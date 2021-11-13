@@ -1,0 +1,27 @@
+{
+  "name": "gurland-server",
+  "version": "1.0.0",
+  "description": "webserver",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha  --timeout 200000 --exit api/**/test-*.js",
+    "start": "node server.js",
+    "lint": "./node_modules/.bin/eslint ./api/**/*.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "memory-cache": "^0.2.0",
+    "moment": "^2.20.1",
+    "mongoose": "^5.1.6"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "eslint": "^4.16.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "mocha": "^9.0.2",
+    "mockgoose": "^7.3.5",
+    "nock": "^9.1.6"
+  }
+}
