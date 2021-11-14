@@ -18,6 +18,11 @@ This README consists of steps and otehr details necessary to get this applicatio
 * Please import Postman collection using link (https://www.getpostman.com/collections/9f2b90a6f1175570b5cd)
 * Please replace {{url}} to http://ec2-18-116-25-159.us-east-2.compute.amazonaws.com:8001
 
+### How do I get set up Docker? ###
+
+* docker build . -t ec2-app
+* docker run -p 8001:8001 --network="host" ec2-app
+
 
 ### Who do I talk to? ###
 

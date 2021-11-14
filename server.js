@@ -24,7 +24,7 @@ app.use((request, response, next) => {
 });
 
 app.get('/api', (request, response) => {
-  response.send('Getir API Server - Hello World!');
+  response.send('Gurland API Server - Hello World!');
 });
 
 var allowCrossDomain = function(req, res, next) {
