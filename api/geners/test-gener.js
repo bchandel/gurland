@@ -33,6 +33,28 @@ describe('Gener Module', () => {
 			});
 		});
 		
+		it("should add gener", () => {
+			let generService =  gener.generService(db);
+			let payload = {
+				"name" : "generr",
+				"description": "gener"
+			};
+			return generService.addGener(payload).then((record) => {
+				expect(record).to.have.property("_id");
+				expect(record).to.have.property("name");
+				expect(record).to.have.property("description");
+			});
+		});
+
+		it("should remove gener by name", () => {
+			let generService =  gener.generService(db);
+			let name =  "generr" ;
+			return generService.removeGenerByName(name).then((record) => {
+				expect(record).to.have.property("n").equal(1);
+				expect(record).to.have.property("ok");
+				expect(record).to.have.property("deletedCount").equal(1);
+			});
+		});
 	});
 
 	describe('Test /api/geners/get-all-geners RESTAPI', () => {
@@ -50,5 +72,46 @@ describe('Gener Module', () => {
 				done();
 			});
 		});
+		
+	});
+
+	describe('Test /api/geners/add-gener RESTAPI', () => {
+
+		it('it should add gener', (done) => {
+			let payload = {
+				"name" : "generr",
+				"description": "gener"
+			}
+			chai.request(server)
+			.post('/api/geners/add-gener')
+			.send(payload)
+			.end((err, record) => {
+				expect(record.body).to.have.property("success");
+				expect(record.body).to.have.property("data").to.be.a('object');
+				expect(record.body.success).to.be.equal(true);
+				done();
+			});
+		});
+
+		
+	});
+
+	describe('Test /api/geners/remove-gener/:name RESTAPI', () => {
+
+		it('it should remove gener by name', (done) => {
+			let name = "generr"
+			chai.request(server)
+			.delete('/api/geners/remove-gener/'+name)
+			.send()
+			.end((err, record) => {
+				expect(record.body).to.have.property("succes");
+				expect(record.body).to.have.property("message");
+				expect(record.body.succes).to.be.equal(true);
+				expect(record.body.message).to.be.equal(`${name} Gener deleted!`);
+				done();
+			});
+		});
+
+		
 	});
 });
